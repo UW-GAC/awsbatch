@@ -1,0 +1,33 @@
+{
+  "computeEnvironmentName": "M4OnDemand",
+  "type": "MANAGED",
+  "state": "ENABLED",
+  "computeResources": {
+    "type": "EC2",
+    "minvCpus": 0,
+    "maxvCpus": 32,
+    "desiredvCpus": 2,
+    "instanceTypes": [
+      "m4.large",
+      "m4.xlarge",
+      "m4.2xlarge",
+      "m4.4xlarge",
+      "m4.10xlarge",
+      "m4.16xlarge"
+    ],
+    "subnets": [
+      "subnet-166abc60",
+      "subnet-27c72f7f",
+      "subnet-92a3b9b9"
+    ],
+    "securityGroupIds": [
+      "sg-ecc03c93"
+    ],
+    "ec2KeyPair": "topmed_admin",
+    "instanceRole": "ecsInstanceRole",
+    "tags": {
+      "Name": "Batch Instance - C4OnDemand"
+    }
+  },
+  "serviceRole": "arn:aws:iam::988956399400:role/AWSBatchServiceRole"
+}

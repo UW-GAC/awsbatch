@@ -1,0 +1,37 @@
+{
+  "jobDefinitionName": "topmed_general",
+  "type": "container",
+  "parameters": { "wd" : "/projects/topmed/analysts/batch",
+      "dr" : "/projects",
+      "rd" : "/usr/local/analysis_pipeline/runRscript.sh",
+      "ra" : "-c 1 /usr/local/analysis_pipeline/R/assoc_window.R /projects/topmed/analysts/batch/somefile.cfg",
+      "lf" : "runrscript.log",
+      "db" : "0",
+      "po" : "0",
+      "mt" : "mount -t nfs4 -o vers=4.1 172.31.58.33:/ /projects"
+  },
+  "containerProperties": {
+    "image": "rollinroy/r-332-tm-aws",
+    "vcpus": 1,
+    "memory": 8000,
+    "privileged": true,
+    "command": [
+        "/usr/local/d.cmd/runRscript.py",
+        "--workdir", "Ref::wd",
+        "--dataroot", "Ref::dr",
+        "--rdriver", "Ref::rd",
+        "--rargs", "Ref::ra",
+        "--mount", "Ref::mt",
+        "--Debug", "Ref::db",
+        "--printonly", "Ref::po",
+        "--logfile", "Ref::lf"
+    ],
+    "environment": [
+      {
+        "name": "SGE_TASK_ID",
+        "value": "1"
+      }
+    ]
+
+  }
+}

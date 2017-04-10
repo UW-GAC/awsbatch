@@ -1,0 +1,19 @@
+{
+    "jobName": "topmed_docker",
+    "jobQueue": "LowPriority",
+    "jobDefinition": "topmed_general",
+    "parameters": { "wd" : "/projects/batch",
+        "dr" : "/projects",
+        "rc" : "/projects/batch/test.bash",
+        "rf" : "/projects/batch/Rsleep.txt",
+        "ra" : "--time 4 --taskid 2",
+        "db" : "1",
+        "po" : "0",
+        "lf" : "runrscript.log",
+        "mt" : "mount -t nfs4 -o vers=4.1 172.31.58.33:/ /projects"
+    },
+    "containerOverrides": {
+        "vcpus": 1,
+        "memory": 8000
+    }
+}
