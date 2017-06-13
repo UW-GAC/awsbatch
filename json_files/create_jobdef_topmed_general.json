@@ -11,12 +11,12 @@
       "mt" : "mount -t nfs4 -o vers=4.1 172.31.58.33:/ /projects"
   },
   "containerProperties": {
-    "image": "rollinroy/r-332-tm-aws",
-    "vcpus": 1,
-    "memory": 8000,
+    "image": "rollinroy/r-332-tm",
+    "vcpus": 2,
+    "memory": 7000,
     "privileged": true,
     "command": [
-        "/usr/local/d.cmd/runRscript.py",
+        "/usr/local/analysis_pipeline/runRscript.py",
         "--workdir", "Ref::wd",
         "--dataroot", "Ref::dr",
         "--rdriver", "Ref::rd",

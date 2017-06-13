@@ -1,0 +1,17 @@
+{
+  "jobDefinitionName": "topmed_sync",
+  "type": "container",
+  "parameters": { "msg" : "Depending jobs completed\n",
+        "jids" : "<holding job ids not provided>"
+  },
+  "containerProperties": {
+    "image": "ubuntu:16.04",
+    "vcpus": 1,
+    "memory": 2000,
+    "command": [
+        "echo",
+        "Ref::msg",
+		"Ref::jids"
+    ]
+  }
+}

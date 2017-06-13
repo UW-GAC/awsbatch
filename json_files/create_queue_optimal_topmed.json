@@ -1,0 +1,11 @@
+{
+  "jobQueueName": "Optimal_topmed",
+  "state": "ENABLED",
+  "priority": 10,
+  "computeEnvironmentOrder": [
+      {
+          "order": 1,
+          "computeEnvironment": "Optimal_topmed"
+      }
+]
+}
