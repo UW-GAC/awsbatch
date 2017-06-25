@@ -1,11 +1,15 @@
 {
   "jobDefinitionName": "topmed_general",
   "type": "container",
+  "retryStrategy": {
+      "attempts": 2
+  },
   "parameters": { "wd" : "/projects/topmed/analysts/batch",
       "dr" : "/projects",
       "rd" : "/usr/local/analysis_pipeline/runRscript.sh",
       "ra" : "-c 1 /usr/local/analysis_pipeline/R/assoc_window.R /projects/topmed/analysts/batch/somefile.cfg",
       "lf" : "runrscript.log",
+      "tmo": "15",
       "db" : "0",
       "po" : "0",
       "mt" : "mount -t nfs4 -o vers=4.1 172.31.58.33:/ /projects"
@@ -24,7 +28,8 @@
         "--mount", "Ref::mt",
         "--Debug", "Ref::db",
         "--printonly", "Ref::po",
-        "--logfile", "Ref::lf"
+        "--logfile", "Ref::lf",
+        "--timeout", "Ref::tmo"
     ],
     "environment": [
       {
@@ -33,5 +38,5 @@
       }
     ]
 
-  }
+    }
 }

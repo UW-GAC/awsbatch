@@ -4,7 +4,7 @@
   "priority": 10,
   "computeEnvironmentOrder": [
       {
-          "order": 1,
+          "order": 5,
           "computeEnvironment": "Optimal_topmed"
       }
 ]
