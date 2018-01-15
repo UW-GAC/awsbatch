@@ -1,5 +1,5 @@
 {
-  "jobDefinitionName": "topmed_general",
+  "jobDefinitionName": "TM_nomount",
   "type": "container",
   "retryStrategy": {
       "attempts": 2
@@ -9,18 +9,19 @@
       "rd" : "/usr/local/analysis_pipeline/runRscript.sh",
       "ra" : "-c 1 /usr/local/analysis_pipeline/R/assoc_window.R /projects/topmed/analysts/batch/somefile.cfg",
       "lf" : "runrscript.log",
-      "tmo": "15",
+      "tmo": "60",
       "db" : "0",
       "po" : "0",
-      "mt" : "mount -t nfs4 -o vers=4.1 172.31.58.33:/ /projects"
+      "mt" : "mount -t nfs4 -o vers=4.1 fs-6ccd31c5.efs.us-west-2.amazonaws.com:/ /projects",
+      "at" : "0"
   },
   "containerProperties": {
-    "image": "rollinroy/r-332-tm",
+    "image": "uwgac/r343-topmed:devel",
     "vcpus": 2,
     "memory": 7000,
     "privileged": true,
     "command": [
-        "/usr/local/analysis_pipeline/runRscript.py",
+        "/usr/local/analysis_pipeline/batchJob.py",
         "--workdir", "Ref::wd",
         "--dataroot", "Ref::dr",
         "--rdriver", "Ref::rd",
@@ -29,7 +30,24 @@
         "--Debug", "Ref::db",
         "--printonly", "Ref::po",
         "--logfile", "Ref::lf",
-        "--timeout", "Ref::tmo"
+        "--timeout", "Ref::tmo",
+        "--arraytype", "Ref::at",
+        "--nomount"
+    ],
+    "volumes": [
+        {
+          "name": "projects",
+          "host": {
+            "sourcePath": "/projects"
+          }
+        }
+    ],
+    "mountPoints": [
+        {
+            "containerPath": "/projects",
+            "readOnly": false,
+            "sourceVolume": "projects"
+        }
     ],
     "environment": [
       {

@@ -1,5 +1,5 @@
 {
-  "jobDefinitionName": "topmed_sync",
+  "jobDefinitionName": "TM_sync",
   "type": "container",
   "parameters": { "msg" : "Depending jobs completed\n",
         "jids" : "<holding job ids not provided>"

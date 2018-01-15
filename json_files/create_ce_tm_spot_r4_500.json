@@ -1,0 +1,36 @@
+{
+  "computeEnvironmentName": "TM_Spot_r4_500_ce",
+  "type": "MANAGED",
+  "state": "ENABLED",
+  "computeResources": {
+    "type": "SPOT",
+    "tags": {"tags_topmed": "spot_r4"},
+    "spotIamFleetRole": "arn:aws:iam::988956399400:role/testspot",
+    "bidPercentage": 20,
+    "minvCpus": 0,
+    "maxvCpus": 500,
+    "desiredvCpus": 0,
+    "instanceTypes": [
+      "r4.xlarge",
+      "r4.2xlarge",
+      "r4.4xlarge",
+      "r4.8xlarge",
+      "r4.16xlarge"
+    ],
+    "subnets": [
+      "subnet-41a8bd37",
+      "subnet-78672220",
+      "subnet-75f10312"
+    ],
+    "securityGroupIds": [
+      "sg-c74b44be"
+    ],
+    "ec2KeyPair": "topmed_admin",
+    "instanceRole": "ecsInstanceRole",
+    "tags": {
+      "Name": "TM_Spot_r4_500_ce"
+    }
+
+  },
+  "serviceRole": "arn:aws:iam::988956399400:role/AWSBatchServiceRole"
+}

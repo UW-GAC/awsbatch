@@ -1,11 +1,11 @@
 {
-  "jobQueueName": "Optimal_topmed",
+  "jobQueueName": "TM_Spot_Opt_100_queue",
   "state": "ENABLED",
   "priority": 10,
   "computeEnvironmentOrder": [
       {
           "order": 5,
-          "computeEnvironment": "Optimal_topmed"
+          "computeEnvironment": "TM_Spot_Opt_100_ce"
       }
 ]
 }

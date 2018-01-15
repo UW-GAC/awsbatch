@@ -1,11 +1,13 @@
 {
-  "computeEnvironmentName": "Optimal_topmed",
+  "computeEnvironmentName": "TM_Spot_Opt_100_ce",
   "type": "MANAGED",
   "state": "ENABLED",
   "computeResources": {
-    "type": "EC2",
+    "type": "SPOT",
+    "spotIamFleetRole": "arn:aws:iam::988956399400:role/AmazonEC2SpotFleetRole",
+    "bidPercentage": 20,
     "minvCpus": 0,
-    "maxvCpus": 400,
+    "maxvCpus": 500,
     "desiredvCpus": 0,
     "instanceTypes": [
       "optimal"
@@ -21,7 +23,7 @@
     "ec2KeyPair": "topmed_admin",
     "instanceRole": "ecsInstanceRole",
     "tags": {
-      "Name": "Batch Instance - Optimal topmed"
+      "Name": "TM_Spot_Opt_100_ce"
     }
   },
   "serviceRole": "arn:aws:iam::988956399400:role/AWSBatchServiceRole"
