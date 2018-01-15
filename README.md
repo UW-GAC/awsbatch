@@ -1,26 +1,25 @@
 ## **awsbatch project** ##
 
-This project both scripts and JSON files used for managing and testing AWS batch service associated with the TOPMed pipeline.
+This project contains files used for help in managing and testing AWS batch service associated with the TOPMed pipeline.
 
 #### *json_files folder* ####
 The folder *json_files* contains JSON files for specifying job definitions, compute environments, and job queues in AWS batch.  These files can be used with AWS command line interface (CLI) for batch to create the job definitions, compute environments and job queues.
 
 For example, the following command illustrates creating (or registering) a job definition using AWS CLI and the json file
 
-    aws batch register-job-definition --cli-input-json file:///<full path to json_files>/topmed_jobdef_general.json
+    aws batch register-job-definition --cli-input-json file:///<relative or full path to json_files>/create_jobdef_tm_nomount.json
 
 (Note: the configuration of AWS cli specifies the credentials with the necessary permissions for executing the AWS batch command)
 
-#### *scripts folder*  ####
-The "*scripts"* folder contains both python and bash scripts for managing and testing the batch service associated with TOPMed pipeline.
+#### *examples folder*  ####
+The "*examples"* folder contains a python script (*batch_boto3_manage_jobs.py*)to help manage batch jobs and bash script (*awsbatch_create_examples.bash*) showing the shell commands for creating compute environments, queues, and job definitions in AWS Batch.  
 
-The python scripts execute AWS batch services using AWS bot3 to help manage batch services more efficiently than using AWS batch console.  For example, to delete all the runnable jobs in a queue using the batch console currently only supports deleting runnable jobs one at a time.  So if there are numerous jobs in the runnable state (or there states for that matter), it's very tedious and lengthy to delete these jobs via the console.  Using a python script, all jobs in a particular state can be deleted executing the script once.  For example,
+The python script requires *aws boto3* to be installed (e.g., *sudo pip install boto3 --upgrade*).  Using this script, jobs can be listed, cancelled, terminated, etc.  See the help (*python batch_boto3_manage_jobs.py -h") for details.
 
-    delete_runnable_jobs.py
+The bash script requires *aws cli* to be installed (e.g., *sudo pip install awscli --upgrade*).  The script illustrates the shell commands the execute (using the json files in the *json_files* folder) to do the following:
+1. Create compute environments that specify a custom AMI.  The custom AMI includes the "preloaded" TOPMed docker images for analysis pipeline (e.g., *uwgac/r343-topmed:master* and *uwgac/r343-topmed:devel*) and pulls down new TOPMed docker images when booted.  The custom AMI also mounts (at boot time via */etc/fstab*) an EFS volume containing TOPMed project data.  The AMI includes 200GB of local storage (mostly to support the docker images and temporary files)
+2. Register (or creates) job definitions for on-demand computing and spot computing
+3. Create job queues supporting the various compute environments
 
-deletes all runnable jobs in a queue specified within the script.  
-
-The bash scripts execute batch services via AWS CLI to submit test jobs.  There are currently the following test jobs:
-
- 1. *submit_test_sync.bash* - submits a job to test the sync job
- 2. *submit_test_rscript.bash* - submits a job to test the running of an R script
+#### *test folder*  ####
+The *test* folder contains a python script (*test_arrayjob.py*) for testing the TOPMed docker images using job arrays.  The script submits a single job and an array job to AWS batch service in a manner similar to TOPMed's analysis pipeline.  It currently executes a very simple R script that just sleeps for 10 seconds (and the R script is located in the EFS volume)
