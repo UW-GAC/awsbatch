@@ -7,7 +7,7 @@ The folder *json_files* contains JSON files for specifying job definitions, comp
 
 For example, the following command illustrates creating (or registering) a job definition using AWS CLI and the json file
 
-    aws batch register-job-definition --cli-input-json file:///<relative or full path to json_files>/create_jobdef_tm_nomount.json
+    aws batch register-job-definition --cli-input-json file:///<relative or full path to json_files>/create_jobdef_tm_devel.json
 
 (Note: the configuration of AWS cli specifies the credentials with the necessary permissions for executing the AWS batch command)
 
