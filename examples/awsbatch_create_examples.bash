@@ -20,6 +20,14 @@ aws batch register-job-definition --cli-input-json file://../json_files/$JFILE
 #==========
 # compute env (general)
 #==========
+JFILE="create_ce_spot_topmed_nfs32.json"
+echo "Creating CE $JFILE"
+aws batch create-compute-environment --cli-input-json file://../json_files/$JFILE
+
+JFILE="create_ce_spot_topmed_nfs72.json"
+echo "Creating CE $JFILE"
+aws batch create-compute-environment --cli-input-json file://../json_files/$JFILE
+
 JFILE="create_ce_spot_topmed_nfs.json"
 echo "Creating CE $JFILE"
 aws batch create-compute-environment --cli-input-json file://../json_files/$JFILE
@@ -32,13 +40,6 @@ JFILE="create_ce_spot_topmed_grm.json"
 echo "Creating CE $JFILE"
 aws batch create-compute-environment --cli-input-json file://../json_files/$JFILE
 
-JFILE="create_ce_spot_topmed_nfs32.json"
-echo "Creating CE $JFILE"
-aws batch create-compute-environment --cli-input-json file://../json_files/$JFILE
-
-JFILE="create_ce_spot_topmed_nfs72.json"
-echo "Creating CE $JFILE"
-aws batch create-compute-environment --cli-input-json file://../json_files/$JFILE
 
 #==========
 # compute env for other users
