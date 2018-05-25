@@ -12,7 +12,8 @@
     "instanceTypes": [
         "c5.xlarge",
         "c5.2xlarge",
-        "c5.4xlarge"
+        "c5.4xlarge",
+        "r4.4xlarge"
     ],
     "imageId": "ami-714a2a09",
     "subnets": [
@@ -27,7 +28,7 @@
     "instanceRole": "ecsInstanceRole",
     "tags": {
       "Name": "SPOT_topmed_nfs32_ce",
-      "Batch": "c5_4xlarge"
+      "Batch": "c5_4xlarge_r4.4xlarge"
     }
   },
   "serviceRole": "arn:aws:iam::988956399400:role/AWSBatchServiceRole"
