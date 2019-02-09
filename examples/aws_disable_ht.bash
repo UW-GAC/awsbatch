@@ -15,3 +15,6 @@ for cpunum in $(cat /sys/devices/system/cpu/cpu*/topology/thread_siblings_list |
 do
 	echo 0 > /sys/devices/system/cpu/cpu$cpunum/online
 done
+
+mount -t nfs4  -o vers=4.1  172.31.5.212:/export_ebs /ext_ebs
+mount -U c998ddfd-a343-4e3f-9479-f58b0fa029be /ext_ebs
