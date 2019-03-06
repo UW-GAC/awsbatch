@@ -1,0 +1,71 @@
+{
+    "type": "container",
+    "retryStrategy": {
+        "attempts": 2
+    },
+    "parameters": {
+        "wd" : "/projects/topmed/analysts/batch",
+        "rd" : "/usr/local/analysis_pipeline/runRscript.sh",
+        "ra" : "-c 1 /usr/local/analysis_pipeline/R/assoc_window.R /projects/topmed/analysts/batch/somefile.cfg",
+        "lf" : "runrscript.log",
+        "bm" : "1",
+        "tmo": "60",
+        "db" : "0",
+        "po" : "0",
+        "at" : "0",
+        "mc" : "mount -t nfs4 -o vers=4.1 fs-6ccd31c5.efs.us-west-2.amazonaws.com:/ /projects",
+        "tf" : ""
+    },
+    "containerProperties": {
+      "image": "uwgac/topmed-roybranch",
+      "vcpus": 2,
+      "memory": 7000,
+      "privileged": true,
+      "command": [
+          "/usr/local/bin/ap2batch.py",
+          "--workdir", "Ref::wd",
+          "--rdriver", "Ref::rd",
+          "--rargs", "Ref::ra",
+          "--logfile", "Ref::lf",
+          "--bindmount", "Ref::bm",
+          "--mounttmo", "Ref::tmo",
+          "--Debug", "Ref::db",
+          "--printonly", "Ref::po",
+          "--arraytype", "Ref::at",
+          "--mountcmd", "Ref::mc",
+          "--tracefile", "Ref::tf"
+      ],
+      "volumes": [
+          {
+            "name": "projects",
+            "host": {
+              "sourcePath": "/projects"
+            }
+        },
+        {
+          "name": "tmp",
+          "host": {
+            "sourcePath": "/tmp"
+          }
+        }
+      ],
+      "mountPoints": [
+          {
+              "containerPath": "/projects",
+              "readOnly": false,
+              "sourceVolume": "projects"
+          },
+          {
+              "containerPath": "/tmp",
+              "readOnly": false,
+              "sourceVolume": "tmp"
+          }
+      ],
+      "environment": [
+        {
+          "name": "SGE_TASK_ID",
+          "value": "1"
+        }
+      ]
+    }
+}
