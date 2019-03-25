@@ -3,7 +3,7 @@ import os
 import sys
 
 class cecontext(object):
-    def __init__(self,ctx_file=None, ctx_version="1.0", verbose = False):
+    def __init__(self, cesize, ctx_file=None, ctx_version="1.0", verbose = False):
         self.verbose = verbose
         self.ctx_file = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])),
                                      "cecontext.json")
@@ -46,11 +46,10 @@ class cecontext(object):
             print("Error: " + key + " key not found in " + self.ctx_file)
             sys.exit(2)
         # get the common resources
-        self.resource_key = "resources"
-        if self.resource_key in ctxinfo:
-            self.resources = ctxinfo[self.resource_key]
+        if cesize in ctxinfo:
+            self.resources = ctxinfo[cesize]
         else:
-            print("Error: " + key + " key not found in " + self.ctx_file)
+            print("Error: ce size " + key + " key not found in " + self.ctx_file)
             sys.exit(2)
         #
         self.resource_names = self.resources.keys()
