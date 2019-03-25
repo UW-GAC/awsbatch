@@ -44,14 +44,14 @@ def Summary(hdr):
     print( '\tTime: ' + tmsg)
 # defaults
 defName = 'TM_roybranch'
-defDocker = 'topmed-roybranch'
+defDocker = 'uwgac/topmed-roybranch'
 defProfile = 'uw'
 defJobfile = 'jobdef.json'
 
 # parse input
-parser = ArgumentParser( description = "script to a batch compute environment" )
-parser.add_argument( "-n", "--name", default = defName,
-                     help = "Name of the job definition to create [default: " + defName + "]" )
+parser = ArgumentParser( description = "script to register a job definition" )
+parser.add_argument( "name", nargs = 1,
+                     help = "Name of the job definition to create [required]" )
 parser.add_argument( "-d", "--dockerimage", default = defDocker,
                      help = "Name of the docker image is use [default: " + defDocker + "]" )
 parser.add_argument( "-j", "--jbdfile", default = defJobfile,
@@ -68,7 +68,10 @@ parser.add_argument( "--version", action="store_true", default = False,
                      help = "Print version of " + __file__ )
 args = parser.parse_args()
 # set result of arg parse_args
-name = args.name
+if len(args.name) > 1:
+    pError('More than 1 argument provided ' + str(args.name))
+    sys.exit(2)
+name = args.name[0]
 dockerimage = args.dockerimage
 jbdfile = args.jbdfile
 profile = args.profile
