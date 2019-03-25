@@ -6,7 +6,7 @@
     "accnt_ctx": {
         "uw" : {
             "resources": {
-                "type": "SPOT",
+                "type": "EC2",
                 "spotIamFleetRole": "arn:aws:iam::988956399400:role/AmazonEC2SpotFleetRole",
                 "bidPercentage": 100,
                 "subnets": [
@@ -19,19 +19,14 @@
                   "sg-c74b44be"
                 ],
                 "ec2KeyPair": "topmed_admin",
-                "instanceRole": "ecsInstanceRole",
-                "tags": {
-                  "Name": "SPOT_topmed_uw",
-                  "Mode": "test",
-                  "Analysis": "not set"
-                }
+                "instanceRole": "ecsInstanceRole"
             },
             "serviceRole": "arn:aws:iam::988956399400:role/AWSBatchServiceRole",
             "profile": "uw"
         },
         "nhlbi_compute" : {
             "resources": {
-                "type": "SPOT",
+                "type": "EC2",
                 "spotIamFleetRole": "arn:aws:iam::591206506624:role/AmazonEC2SpotFleetRole",
                 "bidPercentage": 100,
                 "subnets": [
@@ -48,32 +43,56 @@
                   "sg-00af1b80523077c41"
                 ],
                 "ec2KeyPair": "topmed_admin",
-                "instanceRole": "ecsInstanceRole",
-                "tags": {
-                  "Name": "SPOT_topmed_nhlbi",
-                  "Mode": "test",
-                  "Analysis": "not set"
-                }
+                "instanceRole": "ecsInstanceRole"
             },
             "serviceRole": "arn:aws:iam::591206506624:role/AWSBatchServiceRole",
             "profile": "nhlbi_compute"
         }
     },
-    "resources": {
-        "minvCpus": 0,
-        "maxvCpus": 5000,
-        "desiredvCpus": 0,
-        "instanceTypes": [
-            "m5.2xlarge",
-            "m5.4xlarge",
-            "m5.12xlarge",
-            "c5.xlarge",
-            "c5.2xlarge",
-            "c5.4xlarge",
-            "c5.9xlarge",
-            "r4.4xlarge",
-            "r5.2xlarge",
-            "r5.12xlarge"
-        ]
+    "small": {
+            "minvCpus": 0,
+            "maxvCpus": 5000,
+            "desiredvCpus": 0,
+            "instanceTypes": [
+                "m5.xlarge",
+                "m5.2xlarge",
+                "m5.4xlarge",
+                "c5.2xlarge",
+                "c5.4xlarge",
+                "r5.2xlarge"
+            ],
+            "tags": {
+              "Name": "small_topmed_od",
+              "Mode": "general",
+              "Analysis": "not set"
+            }
+    },
+    "medium": {
+            "minvCpus": 0,
+            "maxvCpus": 5000,
+            "desiredvCpus": 0,
+            "instanceTypes": [
+                "m5.12xlarge",
+                "c5.9xlarge",
+                "r5.4xlarge"
+            ],
+            "tags": {
+              "Name": "medium_topmed_od",
+              "Mode": "general",
+              "Analysis": "not set"
+            }
+    },
+    "large": {
+            "minvCpus": 0,
+            "maxvCpus": 200,
+            "desiredvCpus": 0,
+            "instanceTypes": [
+                "optimal"
+            ],
+            "tags": {
+              "Name": "large_topmed_od",
+              "Mode": "general",
+              "Analysis": "not set"
+            }
     }
 }
