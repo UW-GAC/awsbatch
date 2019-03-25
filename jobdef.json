@@ -1,7 +1,7 @@
 {
     "type": "container",
     "retryStrategy": {
-        "attempts": 2
+        "attempts": 1
     },
     "parameters": {
         "wd" : "/projects/topmed/analysts/batch",
