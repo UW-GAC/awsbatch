@@ -100,5 +100,5 @@ if not test:
                                                     retryStrategy = jbd["retryStrategy"]
                                                    )
     except Exception as e:
-        pError('create_compute_environment error: ' + str(e))
+        pError('register_job_definition error: ' + str(e))
         sys.exit(2)
