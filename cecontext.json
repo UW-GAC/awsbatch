@@ -30,17 +30,35 @@
                 "spotIamFleetRole": "arn:aws:iam::591206506624:role/AmazonEC2SpotFleetRole",
                 "bidPercentage": 100,
                 "subnets": [
-                    "subnet-7740c42b",
-                    "subnet-98912aff",
-                    "subnet-b7bf3999",
-                    "subnet-c29dd688",
-                    "subnet-77559a49",
-                    "subnet-b383febc"
+                    "subnet-007c0628",
+                    "subnet-59d9fd03",
+                    "subnet-873366fe",
+                    "subnet-f393e4b8"
                 ],
-                "imageId": "ami-0af1ce2bb2660c80c",
+                "imageId": "ami-05e05bd1c9239a75d",
                 "securityGroupIds": [
-                  "sg-0c55c688c623f3289",
-                  "sg-00af1b80523077c41"
+                  "sg-cab257b9"
+                ],
+                "ec2KeyPair": "topmed_admin",
+                "instanceRole": "ecsInstanceRole"
+            },
+            "serviceRole": "arn:aws:iam::591206506624:role/AWSBatchServiceRole",
+            "profile": "nhlbi_compute"
+        },
+        "nhlbi_ioprov" : {
+            "resources": {
+                "type": "EC2",
+                "spotIamFleetRole": "arn:aws:iam::591206506624:role/AmazonEC2SpotFleetRole",
+                "bidPercentage": 100,
+                "subnets": [
+                    "subnet-007c0628",
+                    "subnet-59d9fd03",
+                    "subnet-873366fe",
+                    "subnet-f393e4b8"
+                ],
+                "imageId": "ami-09ec6ea779c52b5b2",
+                "securityGroupIds": [
+                  "sg-cab257b9"
                 ],
                 "ec2KeyPair": "topmed_admin",
                 "instanceRole": "ecsInstanceRole"
@@ -91,6 +109,21 @@
             ],
             "tags": {
               "Name": "large_topmed_od",
+              "Mode": "general",
+              "Analysis": "not set"
+            }
+    },
+    "f8": {
+            "minvCpus": 0,
+            "maxvCpus": 5000,
+            "desiredvCpus": 0,
+            "instanceTypes": [
+                "r5.12xlarge",
+                "c5.18xlarge",
+                "r5.24xlarge"
+            ],
+            "tags": {
+              "Name": "f8_topmed_od",
               "Mode": "general",
               "Analysis": "not set"
             }
