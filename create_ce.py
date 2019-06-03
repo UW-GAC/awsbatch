@@ -72,7 +72,7 @@ parser.add_argument( "--amiid",
 parser.add_argument( "--type",
                      help = "Compute environment resources type (SPOT or EC2) [default: value in ctx file]" )
 parser.add_argument( "-s", "--cesize", default = defCESize,
-                     help = "ce size (large, medium, or small) [default: " + defCESize + "]" )
+                     help = "ce size (f8, large, medium, or small) [default: " + defCESize + "]" )
 parser.add_argument( "-p", "--profile",
                      help = "AWS credentials profile [default: based on accntctx]" )
 parser.add_argument( "-T", "--test", action="store_true", default = False,
@@ -101,10 +101,10 @@ profile = args.profile
 instancetypes = args.instancetypes
 amiid = args.amiid
 # verify cesize
-vs = ['small' , 'medium', 'large']
+vs = ['small' , 'medium', 'large', 'f8']
 if cesize not in vs:
     pError('Invalid ce size: ' + cesize + " " + str(vs))
-
+    sys.exit(2)
 
 # create the ce account context object
 cectx = cecontext.cecontext(cesize, ctx_file = ctxfile, verbose = debug)
